@@ -1,0 +1,41 @@
+- name: Install Packages
+  yum: name={{ item }}
+       state=latest
+  with_items:
+    - perl-devel
+    - perl-ExtUtils-Embed
+    - python-devel
+
+- name: Create Download Directory
+  file: path={{ download_dir }}
+        state=directory
+
+- name: Vim Download
+  get_url: url={{ vim_url }}
+           dest={{ download_dir }}
+  register: result
+
+- name: Vim Unarchive
+  unarchive: src={{ result.dest }}
+             dest={{ download_dir }}
+             copy=no
+
+- name: Install Vim
+  command: '{{ item }}'
+  with_items:
+    - './configure {{ configure_options }}'
+    - make
+    - make install
+  args:
+    chdir: '{{ unarchived_dir }}'
+
+- name: Download .vimrc
+  sudo: no
+  get_url: url={{ vimrc_url }}
+           dest=~/.vimrc
+           force=yes
+
+- name: Install neobundle
+  sudo: no
+  git: repo=https://github.com/Shougo/neobundle.vim
+       dest=/home/vagrant/.vim/bundle/neobundle.vim
