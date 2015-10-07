@@ -1,6 +1,6 @@
 galaxy_info:
   author: y@su
-  description: Installing Vim with Lua enabled.
+  description: Installing Vim with Configure Options.
   license: BSD
   min_ansible_version: 1.9
   #
