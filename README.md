@@ -1,5 +1,7 @@
 # Ansible Role: Vim
 
+[![Join the chat at https://gitter.im/yatmsu/ansible-role-vim](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/yatmsu/ansible-role-vim?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 Ansible Role that installs Vim on RetHat/CentOS
 
 ## Requirements
